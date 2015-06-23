@@ -33,7 +33,7 @@ function ElegirCliente($tipoPrestamo, $subTipoPrestamo)
   }
 }
 
-  function SQLFun($values)
+  function SQLHipotecario($values)
   {
     $dbhost = 'localhost';
     $dbuser = 'root';

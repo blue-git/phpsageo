@@ -1,8 +1,24 @@
-body {
-    background-color: #212121;
+body{
+    margin:0px;
 }
-
-titulo {
-  color: #1793d0;
-  text-align: center;
+table.header {
+	background-color: #212121;
+	border-bottom: ridge #1793d0;
+}
+a.header {
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	color: #CCCCCC;
+	font-size: 14px;
+}
+.header-cont {
+    width:100%;
+    position:fixed;
+    top:0px;
+}
+.content{
+  margin-top: 0px;
+  margin-left: 100px;
+  margin-right: 100px;
 }

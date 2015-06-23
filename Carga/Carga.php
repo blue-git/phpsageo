@@ -1,6 +1,6 @@
 <?PHP
-
-    include('codigo.html');
+    include ('menu.html');
+    include ('contenidoCarga.html');
 
     if (isset($_POST['loadPath']))
     {
@@ -14,11 +14,11 @@
             $linea = fgetcsv($file_handle,0,"|");
             if (sizeof($linea == 39))
             {
-              SQLFun($linea);
+              SQLHipotecario($linea);
               @$contador++;
             }
             else {
-              print ("Faltan datos en linea: ". $contador);
+              print ("Faltan datos en linea: ". $contador+1);
             }
           }
           fclose($file_handle);
