@@ -51,7 +51,6 @@ function ElegirCliente($tipoPrestamo, $subTipoPrestamo)
     array_push($values, $cliente,'A derivar','Normal', date('Y-m-d')); //Agrego nuestras columnas
     $valores = "'".implode("','",$values)."'";
     $sqlstring = "INSERT INTO ".$tablename." (".$columnasHipotecario.",".$columnasNuestras.") VALUES (".$valores.")";
-    print (gettype($values[0])."<BR>");
     $valorquery = mysqli_query( $conexion, $sqlstring ) or  die('No se pudo ingresar los datos: ' . mysqli_error($conexion));
     mysqli_close($conexion);
   }
