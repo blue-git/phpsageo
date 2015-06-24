@@ -33,6 +33,31 @@ function ElegirCliente($tipoPrestamo, $subTipoPrestamo)
   }
 }
 
+function TipoDePedido($cancelada,$prorroga,$avance,$observaciones,$cliente)
+{
+  if ($cancelada == "C")
+  {
+    return "Anulado";
+  }
+  if ($prorroga == "SI")
+  {
+    return "Prorroga";
+  }
+  if (preg_match("/visita/i",$observaciones))
+  {
+    return "Reconsideracion";
+  }
+  if (($cliente == 25) or ($cliente == 23))
+  {
+    return "Refaccion";
+  }
+  if ($avance == "SI")
+  {
+    return "Avance";
+  }
+  return "Terreno";
+}
+
   function SQLHipotecario($values)
   {
     $dbhost = 'localhost';
@@ -45,8 +70,8 @@ function ElegirCliente($tipoPrestamo, $subTipoPrestamo)
     $columnasHipotecario='solicitud,nroTasacion,tipo,apellidoNombre,dni,canal,sucursal,tipoPrestamo,tasadora,sucOriginadora,fechaEnvio,destino,contacto,horarioContacto,telefono1,telefono2,titular,telefonoTitular,calle,numero,entreCalles,manzanaTorre,lotePiso,casaDepto,unidadFuncional,cochera,baulera,codPost,localidad,partidoDepto,provincia,observaciones,catastro,avance,prorroga';
     $columnasNuestras='cliente,estado,prioridad,fechaIngreso';
     //columnasNoUsadas='numeroSageo,deudorCliente,tasador,fechaVisita,recibidoTasador,fechaSalida,viaje,solicitante,mailSolicitante,idMejoras,honorarioEspecial,presupuestoEspecial,pagadoTasador,facturaSageo';'
-    //array_splice($values,2,1);  //Borro la "A"
     $cliente = ElegirCliente($values[7],$values[11]);
+    $values[2] = TipoDePedido($values[2],$values[34],$values[33],$values[31],$cliente); //Reemplazo A por el tipo de pedido
     array_pop($values); //Borro el ultimo campo del archivo de pedidos
     array_push($values, $cliente,'A derivar','Normal', date('Y-m-d')); //Agrego nuestras columnas
     $valores = "'".implode("','",$values)."'";
