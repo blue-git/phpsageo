@@ -30,29 +30,4 @@
         }
     }
 
-Function procesarHipotecario($file_handle)
-{
-  $procesadas = 0;
-  $contador = 0;
-  while ( !feof($file_handle) )
-  {
-    $contador++;
-    $linea = fgetcsv($file_handle,0,"|");
-    if (sizeof($linea == 39))
-    {
-      SQLHipotecario($linea);
-      $procesadas++;
-    }
-    else {
-      print ("Faltan datos en linea: ". $contador);
-    }
-  }
-  return $procesadas;
-}
-Function procesarAmpliacion($handle)
-{}
-
-Function procesarFotografia($handle)
-{}
-
 ?>

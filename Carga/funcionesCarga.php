@@ -1,61 +1,24 @@
 <?php
-function ElegirCliente($tipoPrestamo, $subTipoPrestamo)
-{
-  switch ($tipoPrestamo)
-  {
-    case "PRESTAMO PROGRAMA CREDITO ARGENTINO":
-      if ($subTipoPrestamo == "MEJORA - AMPLIACION" or $subTipoPrestamo == "TERMINACION") {
-        return 33;
-      }
-      elseif($subTipoPrestamo == "ADQUISICION") {
-        return 35;
-      }
-      else {
-        return 31;
-      }
-      break;
-    case "PROCREAR ASISTENCIA DAMNIFICADOS":
-        return 23;
-      break;
-    case "PRESTAMO REFACCION PROCREAR BICENTENARIO":
-        return 25;
-      break;
-    case "":
-      if ($subTipoPrestamo == "FOTOGRAFIAS") {
-        return 27;
-      }
-      else {
-        return 0;
-      }
-      break;
-    default:
-      return 29;
-  }
-}
+include ('funcionesExtra.php');
 
-function TipoDePedido($cancelada,$prorroga,$avance,$observaciones,$cliente)
+function procesarHipotecario($file_handle)
 {
-  if ($cancelada == "C")
+  $procesadas = 0;
+  $contador = 0;
+  while ( !feof($file_handle) )
   {
-    return "Anulado";
+    $contador++;
+    $linea = fgetcsv($file_handle,0,"|");
+    if (sizeof($linea == 39))
+    {
+      SQLHipotecario($linea);
+      $procesadas++;
+    }
+    else {
+      print ("Faltan datos en linea: ". $contador);
+    }
   }
-  if ($prorroga == "SI")
-  {
-    return "Prorroga";
-  }
-  if (preg_match("/visita/i",$observaciones))
-  {
-    return "Reconsideracion";
-  }
-  if (($cliente == 25) or ($cliente == 23))
-  {
-    return "Refaccion";
-  }
-  if ($avance == "SI")
-  {
-    return "Avance";
-  }
-  return "Terreno";
+  return $procesadas;
 }
 
   function SQLHipotecario($values)
@@ -80,4 +43,9 @@ function TipoDePedido($cancelada,$prorroga,$avance,$observaciones,$cliente)
     mysqli_close($conexion);
   }
 
+  function procesarAmpliacion($handle)
+  {}
+
+  function procesarFotografia($handle)
+  {}
  ?>
