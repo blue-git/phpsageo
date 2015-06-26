@@ -1,6 +1,6 @@
 <?php
 
-function ElegirCliente($tipoPrestamo, $subTipoPrestamo)
+function elegirCliente($tipoPrestamo, $subTipoPrestamo)
 {
   switch ($tipoPrestamo)
   {
@@ -34,7 +34,7 @@ function ElegirCliente($tipoPrestamo, $subTipoPrestamo)
   }
 }
 
-function TipoDePedido($cancelada,$prorroga,$avance,$observaciones,$cliente)
+function tipoDePedido($cancelada,$prorroga,$avance,$observaciones,$cliente)
 {
   if ($cancelada == "C")
   {
