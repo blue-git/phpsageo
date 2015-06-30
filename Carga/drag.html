@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <style>
+      #uploadelement {
+        width: 90px;
+        height: 25px;
+      }
+    </style>
+  </head>
+
+<script>
+    var entered = 0;
+
+    window.onload = function() {
+         // auto focus in input -> mean all is ready to get dragable URL
+         document.getElementById('fileName').focus();
+
+         document.getElementById('getURL').ondragenter= function(){
+               entered++;
+               document.getElementById('uploadelement').style.display='block';
+        }
+
+         document.getElementById('getURL').ondragleave = function(){
+               entered--;
+               if (!entered) document.getElementById('uploadelement').style.display='none';
+        }
+
+        document.getElementById('uploadelement').onchange = function(){
+              if (this.value) {
+                      //document.getElementById('fileName').value = this.value.replace(/^C:\\fakepath\\/i, '');
+                      document.getElementById('fileName').value = 'C:\\Users\\Pablo\\Desktop\\' + this.value;
+              }
+
+        }
+    }
+</script>
+
+<body >
+  <div id = "getURL" >
+
+    <FORM NAME ="form" METHOD ="POST" ACTION = "Carga.php" id="uploadform" enctype="multipart/form-data">
+      <BR><BR>
+      <INPUT TYPE = "Text" VALUE ="C:\Users\Pablo\Desktop\Pedido.txt" NAME = "loadPath" id="fileName" style="width: 300px">
+      <input type="file" id="uploadelement" name="dragupload[]" />
+      <BR><BR>
+      <input type="radio" name="tipoDeCarga" value=1 checked> Hipotecario <br>
+      <input type="radio" name="tipoDeCarga" value=2 > Fotografias <br>
+      <input type="radio" name="tipoDeCarga" value=3 > Ampliaciones <br>
+      <!-- <select name="tipoDeCarga">
+         <option value=1 selected>Hipotecario</option>
+         <option value=2>Fotografias</option>
+         <option value=3>Ampliaciones</option>
+      </select> -->
+      <BR>
+      <INPUT TYPE = "Submit" Name = "botCarga" VALUE = "Cargar" style="width: 200px">
+    </FORM>
+
+  </div>
+</body>
+</html>

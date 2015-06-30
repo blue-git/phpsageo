@@ -1,6 +1,8 @@
 <?PHP
+
     include ('menu.html');
-    include ('contenidoCarga.html');
+    //include ('contenidoCarga.html');
+    include('drag.html');
     include ('funcionesCarga.php');
 
 
