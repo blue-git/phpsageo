@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <title>Carga de archivo HIPOTECARIO</title>
+    <link rel="stylesheet" href="codigo.css">
   <style>
       #uploadelement {
         width: 90px;
@@ -34,12 +36,17 @@
 
         }
     }
+
+  function confirmSubmit() {
+    return confirm('Seguro que desea cargar el archivo?');
+  }
+
 </script>
 
 <body >
   <div id = "getURL" >
 
-    <FORM NAME ="form" METHOD ="POST" ACTION = "Carga.php" id="uploadform" enctype="multipart/form-data">
+    <FORM NAME ="form" METHOD ="POST" ACTION = "Carga.php" id="uploadform" enctype="multipart/form-data" onsubmit="return confirmSubmit()">
       <BR><BR>
       <INPUT TYPE = "Text" VALUE ="C:\Users\Pablo\Desktop\Pedido.txt" NAME = "loadPath" id="fileName" style="width: 300px">
       <input type="file" id="uploadelement" name="dragupload[]" />

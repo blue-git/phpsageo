@@ -2,7 +2,7 @@
 
     include ('menu.html');
     //include ('contenidoCarga.html');
-    include('drag.html');
+    include('contenidoconDrag.html');
     include ('funcionesCarga.php');
 
 

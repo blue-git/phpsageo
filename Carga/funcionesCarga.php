@@ -24,7 +24,7 @@ function procesar($file_handle, $tipo)
       $procesadas++;
     }
     else{
-      print "Faltaron datos en linea: ".$totales."<BR>";
+      print "Error en linea: ".$totales."<BR>";
     }
   }
   mysqli_close($conexion);
@@ -63,11 +63,17 @@ if ($values[0])
   {
     $pedido = "SELECT * FROM $tablename WHERE solicitud = $values[0] ORDER BY numeroSageo ASC LIMIT 1";
     $queryArray = mysqli_fetch_assoc(mysqli_query($conexion, $pedido));
-    $queryArray = array_replace($queryArray,["cliente" => 33,"tipo" => "Avance","nroTasacion" => $values[1]]);
-    array_splice($queryArray, 0, 1);
-    $columnasArchivo = implode(",",array_keys($queryArray));
-    $values = $queryArray;
-    $realizarQuery = true;
+    if ($queryArray)
+    {
+      $queryArray = array_replace($queryArray,["cliente" => 33,"tipo" => "Avance","nroTasacion" => $values[1]]);
+      array_splice($queryArray, 0, 1);
+      $columnasArchivo = implode(",",array_keys($queryArray));
+      $values = $queryArray;
+      $realizarQuery = true;
+    }
+    else {
+      print "No se encontro pedido anterior para cargar el informe: ".$values[0]." ";
+    }
   }
 
   if ($realizarQuery)
