@@ -1,6 +1,5 @@
-<?php
+ <?php
 include ('funcionesExtra.php');
-
 
 function procesar($file_handle, $tipo)
 {
@@ -15,7 +14,7 @@ function procesar($file_handle, $tipo)
 
   $procesadas = 0;
   $totales = 0;
-  $conexion = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die('No se pudo conectar a la DB: ' . mysqli_error($conexion));;
+  $conexion = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die('No se pudo conectar a la DB: ' . mysqli_error($conexion));
   while ( !feof($file_handle) )
   {
     $totales++;
